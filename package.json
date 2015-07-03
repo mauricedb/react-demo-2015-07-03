@@ -29,6 +29,8 @@
   "dependencies": {
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
+    "jquery": "^2.1.4",
+    "react": "^0.13.3",
     "underscore": "^1.8.3"
   }
 }

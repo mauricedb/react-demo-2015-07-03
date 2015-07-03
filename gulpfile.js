@@ -33,8 +33,31 @@ gulp.task("webpack", function(callback) {
     });
 });
 
+gulp.task("webpack-jsx", function(callback) {
+    // run webpack
+    webpack({
+        // configuration
+        entry: "./app/reactDemo.jsx",
+        output: {
+            path: './wwwroot/app',
+            filename: "reactDemo.js"
+        },
+        module: {
+            loaders: [
+                { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader"}
+            ]
+        }
+    }, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
+});
+
 gulp.task('watch-js', function(){
-    gulp.watch('./app/**/*.js', ['webpack'])
+    gulp.watch('./app/**/*.*', ['webpack', 'webpack-jsx'])
 })
 
-gulp.task('default', ['send-message', 'webpack', 'watch-js']);
+gulp.task('default', ['send-message', 'webpack', 'watch-js', 'webpack-jsx']);
