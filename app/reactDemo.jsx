@@ -1,5 +1,6 @@
 var React = require('react');
 var jquery = require('jquery');
+import Router,{ Route , DefaultRoute, RouteHandler} from 'react-router';
 
 var ListItem = React.createClass({
     render(){
@@ -62,6 +63,8 @@ var UnboundForm = React.createClass({
         alert('Hello ' + name);
     },
     render(){
+        console.log(this.props)
+
         return <div>
             <input ref='nameInput' type='text' defaultValue='Joe' />
             <button onClick={this.greet}>Greet me</button>
@@ -81,4 +84,23 @@ var App = React.createClass({
     }
 });
 
-React.render(<App />, document.getElementById('app'));
+//React.render(<App />, document.getElementById('app'));
+
+var MainPage = React.createClass({
+    render(){
+        return (<RouteHandler />);
+    }
+})
+
+var routes = (
+    <Route handler={MainPage} path="/">
+        <Route handler={App} name="app" path="/app"></Route>
+        <Route handler={UnboundForm} name="demo1" path="/demo1/:id"></Route>
+    </Route>
+
+);
+
+
+Router.run(routes, function (Handler) {
+    React.render(<Handler/>, document.getElementById('app'));
+});
