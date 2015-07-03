@@ -1,4 +1,3 @@
-﻿'use strict';
 
 var express = require('express');
 var app = express();
@@ -7,7 +6,7 @@ var countries = require('./countries');
 var directors = require('./directors');
 var path = require('path');
 var bodyParser = require('body-parser');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../wwwroot')));
 app.use(bodyParser.json());
 
 app.get('/api/movies', function (req, res) {
