@@ -29,7 +29,7 @@
   "dependencies": {
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
-    "jquery": "^2.1.4",
+    "jquery": "^3.0.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "reflux": "^0.2.8",
